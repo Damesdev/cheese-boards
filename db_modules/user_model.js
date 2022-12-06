@@ -1,16 +1,16 @@
-const {db} = require("./db.js");
-const Sequelize = require("./sequelize")
+const {db} = require("../db");
+const { Sequelize } = require('sequelize');
 
-const User = await db.define("User",{
+const User = db.define("User",{
     name: {
-        Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false 
         },
     email: {
-        Sequelize.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         unique: true
     },
-})
+});
 
 module.exports = {User};

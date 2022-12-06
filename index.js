@@ -1,1 +1,1 @@
-const sequelize = require("./db")
+const db = require("./db")
