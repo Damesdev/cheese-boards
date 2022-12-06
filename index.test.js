@@ -1,6 +1,7 @@
 // DB Model Imports
 const {User} = require("./db_modules/user_model.js");
 const {Board} = require("./db_modules/board_model")
+const { Cheese } = require("./db_modules/cheese_model.js");
 
 const {db} = require("./db");
 
@@ -41,4 +42,21 @@ describe("Testing Board Model", () =>{
 
         expect(await Board.count()).toBe(1);
     })
+})
+
+// Cheest Model Test
+describe("Cheese Model Test", () => {
+    beforeAll(async () => {
+        await db.sync({force:true})
+    })
+
+    test("Testing Cheese creation", async ()=>{
+        expect(await Cheese.count()).toBe(0)
+        await Cheese.create({
+            title: "Pepper Jack",
+            description: "Has peppers and is slightly spicy"
+        })
+        expect(await Cheese.count()).toBe(1)
+    })
+
 })
