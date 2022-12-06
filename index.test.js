@@ -1,7 +1,12 @@
+// DB Model Imports
 const {User} = require("./db_modules/user_model.js");
+const {Board} = require("./db_modules/board_model")
+
 const {db} = require("./db");
 
-describe("Testing User Database", () => {
+
+// User Model Tests
+describe("Testing User Model", () => {
 
     beforeAll(async () => {
         // the 'sync' method will create tables based on the model class
@@ -20,3 +25,20 @@ describe("Testing User Database", () => {
     });
 
 });
+
+// Board Model Tests
+describe("Testing Board Model", () =>{
+    beforeAll(async ()=> {
+        await db.sync({force:true})
+    });
+
+    test("Testing Board Creation", async () => {
+        await Board.create({
+            type: "Greatest",
+            description: "Has the good cheeses and good flavors",
+            rating: 5,
+        })
+
+        expect(await Board.count()).toBe(1);
+    })
+})
