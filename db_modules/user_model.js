@@ -1,7 +1,7 @@
-const sequelize = require("./db.js");
+const {db} = require("./db.js");
 const Sequelize = require("./sequelize")
 
-const User = await sequelize.define("User",{
+const User = await db.define("User",{
     name: {
         Sequelize.STRING,
         allowNull: false 
