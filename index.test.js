@@ -1,7 +1,7 @@
 const {User} = require("./db_modules/user_model.js");
 const {db} = require("./db");
 
-describe("Testing Database", () => {
+describe("Testing User Database", () => {
 
     beforeAll(async () => {
         // the 'sync' method will create tables based on the model class
