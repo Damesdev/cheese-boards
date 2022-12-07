@@ -9,7 +9,8 @@ User.hasMany(Board);
 Board.belongsTo(User);
 
 // Creating Board/Cheese Assocition
-Board.belongsToMany(Cheese);
+Board.belongsToMany(Cheese, through: Cheese);
 Cheese.belongsToMany(Board);
+
 
 module.exports = {Board, Cheese, User};
