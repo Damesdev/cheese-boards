@@ -3,6 +3,7 @@ const {User, Board, Cheese} = require("./index");
 
 
 const {db} = require("./db");
+const { default: test } = require("node:test");
 
 // User Model Tests
 describe("Testing User Model", () => {
@@ -102,9 +103,9 @@ describe("Association Testing", () => {
 
         console.log(testBoard)
 
-        const testUserBoards = await testUser.getBoards()
+        const testUserBoards = await testUser.countBoards();
 
-        expect(testUserBoards.length).toBe(1)
+        expect(testUserBoards).toBe(1)
     });
 
     test("Board/Cheese Association Testing", async () => {
@@ -120,6 +121,11 @@ describe("Association Testing", () => {
 
         expect(testBoardCheese.length).toBe(1)
 
+    });
+
+    test("Testing Eager Loading", () =>{
+
+        
     })
 
 
