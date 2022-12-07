@@ -6,6 +6,7 @@ const { Cheese } = require("./db_modules/cheese_model.js");
 const {db} = require("./db");
 
 
+
 // User Model Tests
 describe("Testing User Model", () => {
 
@@ -29,9 +30,9 @@ describe("Testing User Model", () => {
 
 // Board Model Tests
 describe("Testing Board Model", () =>{
-    beforeAll(async ()=> {
-        await db.sync({force:true})
-    });
+    // beforeAll(async ()=> {
+    //     await db.sync({force:true})
+    // });
 
     test("Testing Board Creation", async () => {
         await Board.create({
@@ -46,9 +47,9 @@ describe("Testing Board Model", () =>{
 
 // Cheest Model Test
 describe("Cheese Model Test", () => {
-    beforeAll(async () => {
-        await db.sync({force:true})
-    })
+    // beforeAll(async () => {
+    //     await db.sync({force:true})
+    // })
 
     test("Testing Cheese creation", async ()=>{
         expect(await Cheese.count()).toBe(0)
