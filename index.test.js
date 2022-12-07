@@ -3,7 +3,6 @@ const {User, Board, Cheese} = require("./index");
 
 
 const {db} = require("./db");
-const { default: test } = require("node:test");
 
 // User Model Tests
 describe("Testing User Model", () => {
@@ -123,9 +122,24 @@ describe("Association Testing", () => {
 
     });
 
-    test("Testing Eager Loading", () =>{
+    test("Testing Eager Loading", async () =>{
+        // Loading Boards
+        const UserswithBoards = await User.findAll({
+            include: [{
+              model: Board
+            }]
+        });
 
-        
+        console.log(UserswithBoards[3].Boards.length)
+
+        expect(UserswithBoards[3].Boards.length).toBe(1)
+        expect(UserswithBoards[1].Boards.length).toBe(0)
+
+
+
+
+        // console.log(UserswithBoards)
+
     })
 
 
