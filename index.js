@@ -7,9 +7,14 @@ const {Board} = require("./db_modules/board_model");
 User.hasMany(Board);
 Board.belongsTo(User);
 
-// Creating Board/Cheese Assocition
-Board.belongsToMany(Cheese, {through: board_cheese});
-Cheese.belongsToMany(Board, {through: board_cheese});
 
+// Creating Board/Cheese Assocition
+Board.belongsToMany(Cheese, {
+    through: "board_cheese"
+});
+  
+Cheese.belongsToMany(Board, {
+    through: "board_cheese"
+});
 
 module.exports = {Board, Cheese, User};

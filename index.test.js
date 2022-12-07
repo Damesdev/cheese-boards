@@ -94,11 +94,33 @@ describe("Association Testing", () => {
     test("User/Board Association test", async () =>{
         // finding test board
         const testBoard = await Board.findOne({where:{type:"Test"}})
-        // finding test User
-        const testUser = await User.findOne({Where: {name:"Test"}})
 
-        await testUser.addBoard()
+        // finding test User
+        const testUser = await User.findOne({where: {name:"Test"}})
+
+        await testUser.addBoard(testBoard)
+
+        console.log(testBoard)
+
+        const testUserBoards = await testUser.getBoards()
+
+        expect(testUserBoards.length).toBe(1)
     });
+
+    test("Board/Cheese Association Testing", async () => {
+
+        // adding Provolone to Test Board
+        const provolone = await Cheese.findOne({where: {title: "Provolone"}});
+
+        const testBoard = await Board.findOne({where:{type:"Test"}});
+
+        await testBoard.addCheese(provolone);
+
+        const testBoardCheese = await testBoard.getCheeses()
+
+        expect(testBoardCheese.length).toBe(1)
+
+    })
 
 
 });
