@@ -93,18 +93,21 @@ describe("Association Testing", () => {
 
     test("User/Board Association test", async () =>{
         // finding test board
-        const testBoard = await Board.findOne({where:{type:"Test"}})
+        const testBoard = await Board.findByPk(4)
 
         // finding test User
         const testUser = await User.findOne({where: {name:"Test"}})
 
         await testUser.addBoard(testBoard)
+        await testBoard.setUser(testUser)
 
         console.log(testBoard)
 
         const testUserBoards = await testUser.countBoards();
+        const testBoardUser = await testBoard.getUser()
 
         expect(testUserBoards).toBe(1)
+        expect(testBoardUser.name).toBe("Test")
     });
 
     test("Board/Cheese Association Testing", async () => {
@@ -122,15 +125,15 @@ describe("Association Testing", () => {
 
     });
 
-    test("Testing Eager Loading", async () =>{
-        // Loading Boards
+    test("Testing Eager Loading User with", async () =>{
+        // Loading User Boards
         const UserswithBoards = await User.findAll({
             include: [{
               model: Board
             }]
         });
 
-        console.log(UserswithBoards[3].Boards.length)
+        console.log(UserswithBoards[3].Boards)
 
         expect(UserswithBoards[3].Boards.length).toBe(1)
         expect(UserswithBoards[1].Boards.length).toBe(0)

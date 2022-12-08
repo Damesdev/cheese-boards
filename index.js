@@ -6,6 +6,7 @@ const {Board} = require("./db_modules/board_model");
 // Creating User/Board Association
 User.hasMany(Board);
 Board.belongsTo(User);
+Board.hasOne(User);
 
 
 // Creating Board/Cheese Assocition
